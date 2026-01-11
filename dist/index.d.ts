@@ -5,6 +5,7 @@ type ResourceCurve = {
     peak: number;
     variance: number;
 };
+type FailureType = "pressure" | "timeout" | "starvation" | "load_shed" | "random";
 type ExecutionProfile = {
     meanDuration: number;
     cpuCurve: ResourceCurve;
@@ -20,7 +21,12 @@ type Task = {
     expectedEndAt?: number;
     progress: number;
     phase: TaskPhase;
+    jitter?: number;
+    currentRAM?: number;
     failureProbability: number;
+    failureReason?: string;
+    failureType?: FailureType;
+    maxQueueTime?: number;
     status: TaskStatus;
 };
 
@@ -46,6 +52,7 @@ type SystemMetrics = {
     pressure: number;
     completed: number;
     failed: number;
+    stabilityIndex: number;
 };
 
 type PolicyName = "FAIRNESS" | "BALANCED" | "THROUGHPUT";
@@ -57,17 +64,30 @@ type Policy = {
 };
 declare const POLICIES: Record<PolicyName, Policy>;
 
+interface SystemConfig {
+    maxConcurrentTasks: number;
+}
 type SystemState = {
     time: number;
     policy: PolicyName;
     resources: SystemResources;
+    config: SystemConfig;
     tasks: Task[];
     workers: Worker[];
     metrics: SystemMetrics;
 };
+interface Metrics {
+    queueLength: number;
+    cpuPressure: number;
+    ramPressure: number;
+    pressure: number;
+    completed: number;
+    failed: number;
+    stabilityIndex: number;
+}
 
 type RNG = () => number;
 
 declare function tick(state: SystemState, dt: number, rng: RNG): SystemState;
 
-export { type ExecutionProfile, POLICIES, type Policy, type PolicyName, type ResourceCurve, type SystemMetrics, type SystemState, type Task, type TaskPhase, type TaskStatus, type Worker, tick };
+export { type ExecutionProfile, type FailureType, type Metrics, POLICIES, type Policy, type PolicyName, type ResourceCurve, type SystemConfig, type SystemMetrics, type SystemState, type Task, type TaskPhase, type TaskStatus, type Worker, tick };

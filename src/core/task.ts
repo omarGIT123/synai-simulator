@@ -7,6 +7,13 @@ export type ResourceCurve = {
   variance: number;
 };
 
+export type FailureType =
+  | "pressure"
+  | "timeout"
+  | "starvation"
+  | "load_shed"
+  | "random";
+
 export type ExecutionProfile = {
   meanDuration: number;
   cpuCurve: ResourceCurve;
@@ -26,7 +33,11 @@ export type Task = {
 
   progress: number;
   phase: TaskPhase;
-
+  jitter?: number;
+  currentRAM?: number;
   failureProbability: number;
+  failureReason?: string;
+  failureType?: FailureType;
+  maxQueueTime?: number;
   status: TaskStatus;
 };

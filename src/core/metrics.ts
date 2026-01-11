@@ -7,4 +7,6 @@ export type SystemMetrics = {
 
   completed: number;
   failed: number;
+
+  stabilityIndex: number;
 };
