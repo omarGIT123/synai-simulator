@@ -1,17 +1,16 @@
 {
   "name": "synai-simulator",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "@types/node": "^25.0.6",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
   }
 }
