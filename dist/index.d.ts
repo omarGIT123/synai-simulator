@@ -76,18 +76,12 @@ type SystemState = {
     workers: Worker[];
     metrics: SystemMetrics;
 };
-interface Metrics {
-    queueLength: number;
-    cpuPressure: number;
-    ramPressure: number;
-    pressure: number;
-    completed: number;
-    failed: number;
-    stabilityIndex: number;
-}
 
 type RNG = () => number;
+declare function createRNG(seed: number): RNG;
 
 declare function tick(state: SystemState, dt: number, rng: RNG): SystemState;
 
-export { type ExecutionProfile, type FailureType, type Metrics, POLICIES, type Policy, type PolicyName, type ResourceCurve, type SystemConfig, type SystemMetrics, type SystemState, type Task, type TaskPhase, type TaskStatus, type Worker, tick };
+declare function computeMetrics(state: SystemState): SystemState;
+
+export { type ExecutionProfile, type FailureType, POLICIES, type Policy, type PolicyName, type RNG, type ResourceCurve, type SystemConfig, type SystemMetrics, type SystemResources, type SystemState, type Task, type TaskPhase, type TaskStatus, computeMetrics, createRNG, tick };
