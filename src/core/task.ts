@@ -40,4 +40,5 @@ export type Task = {
   failureType?: FailureType;
   maxQueueTime?: number;
   status: TaskStatus;
+  finishedAt?: number; // Timestamp when the task is finished (completed or failed)
 };

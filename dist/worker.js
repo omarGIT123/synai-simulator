@@ -99,6 +99,7 @@ function schedule(state2, dt, rng2) {
       t.status = "failed";
       t.failureType = "starvation";
       t.failureReason = "Starvation: task waited too long in queue under pressure";
+      t.finishedAt = now;
     }
   }
   const queued = state2.tasks.filter((t) => t.status === "queued");
@@ -107,6 +108,7 @@ function schedule(state2, dt, rng2) {
     worst.status = "failed";
     worst.failureType = "load_shed";
     worst.failureReason = "Load shed: system pressure exceeded safe threshold";
+    worst.finishedAt = now;
   }
   const queuedWithCost = state2.tasks.filter((t) => t.status === "queued").map((t) => ({ t, cost: computeTaskCost(t, state2).total }));
   let sortedQueued;
@@ -158,6 +160,7 @@ function schedule(state2, dt, rng2) {
         t.status = "failed";
         t.failureType = "timeout";
         t.failureReason = "Deadline exceeded under sustained pressure";
+        t.finishedAt = now;
         continue;
       }
     }
@@ -169,10 +172,12 @@ function schedule(state2, dt, rng2) {
       t.status = "failed";
       t.failureType = "pressure";
       t.failureReason = `Execution failure (\u03BB=${lambda.toFixed(3)})`;
+      t.finishedAt = now;
       continue;
     }
     if (t.progress >= 1) {
       t.status = "completed";
+      t.finishedAt = now;
     }
     if (rng2() < 0.15) {
       t.phase = t.phase === "cpu" ? "io" : "cpu";

@@ -32,6 +32,7 @@ export function schedule(
       t.failureType = "starvation";
       t.failureReason =
         "Starvation: task waited too long in queue under pressure";
+      t.finishedAt = now;
     }
   }
 
@@ -49,6 +50,7 @@ export function schedule(
     worst.status = "failed";
     worst.failureType = "load_shed";
     worst.failureReason = "Load shed: system pressure exceeded safe threshold";
+    worst.finishedAt = now;
   }
 
   /* =========================================================
@@ -142,6 +144,7 @@ export function schedule(
         t.status = "failed";
         t.failureType = "timeout";
         t.failureReason = "Deadline exceeded under sustained pressure";
+        t.finishedAt = now;
         continue;
       }
     }
@@ -163,12 +166,14 @@ export function schedule(
       t.status = "failed";
       t.failureType = "pressure";
       t.failureReason = `Execution failure (λ=${lambda.toFixed(3)})`;
+      t.finishedAt = now;
       continue;
     }
 
     /* ---------- COMPLETION ---------- */
     if (t.progress >= 1) {
       t.status = "completed";
+      t.finishedAt = now;
     }
 
     /* ---------- ASYNC ILLUSION ---------- */

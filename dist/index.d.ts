@@ -28,6 +28,7 @@ type Task = {
     failureType?: FailureType;
     maxQueueTime?: number;
     status: TaskStatus;
+    finishedAt?: number;
 };
 
 type Worker = {
