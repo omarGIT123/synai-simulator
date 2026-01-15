@@ -8,14 +8,10 @@ export interface SystemConfig {
 }
 export type SystemState = {
   time: number;
-
   policy: PolicyName;
-
   resources: SystemResources;
   config: SystemConfig;
-
   tasks: Task[];
   workers: Worker[];
-
   metrics: SystemMetrics;
 };

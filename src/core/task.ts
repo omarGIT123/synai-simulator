@@ -24,13 +24,10 @@ export type Task = {
   id: string;
   value: number;
   deadline: number;
-
   execution: ExecutionProfile;
-
   createdAt: number;
   startedAt?: number;
   expectedEndAt?: number;
-
   progress: number;
   phase: TaskPhase;
   jitter?: number;

@@ -52,7 +52,9 @@ const initialState: SystemState = {
     pressure: 0,
     completed: 0,
     failed: 0,
+    stabilityIndex: 0,
   },
+  config: { maxConcurrentTasks: 5 },
 };
 
 worker.postMessage({ type: "INIT", payload: initialState });
