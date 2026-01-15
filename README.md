@@ -1,4 +1,5 @@
 # synai-simulator
+> Experimental prototype — open to discussion and collaboration.
 
 ## Purpose
 
