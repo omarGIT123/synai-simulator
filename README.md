@@ -1,4 +1,5 @@
 # synai-simulator
+
 > Experimental prototype — open to discussion and collaboration.
 
 ## Purpose
@@ -7,9 +8,9 @@
 
 It is designed to help researchers, engineers, and system architects understand how different scheduling strategies, resource bottlenecks, and failure modes affect:
 
-* system stability
-* throughput
-* fairness
+- system stability
+- throughput
+- fairness
 
 The simulator provides a controlled environment to experiment with real-world system dynamics rather than idealized steady-state behavior.
 
@@ -17,22 +18,22 @@ The simulator provides a controlled environment to experiment with real-world sy
 
 ## What It Simulates
 
-* **Task Lifecycle**
+- **Task Lifecycle**
   Tasks are created, queued, scheduled, executed, and eventually completed or failed.
 
-* **Resource Management**
+- **Resource Management**
   Simulates CPU and RAM allocation, contention, and pressure.
 
-* **Worker Model**
+- **Worker Model**
   Workers have fixed resource limits and can execute multiple tasks concurrently.
 
-* **Scheduling Policies**
+- **Scheduling Policies**
   Multiple policies determine which tasks are admitted and prioritized.
 
-* **Failure Modes**
+- **Failure Modes**
   Realistic failure scenarios caused by pressure, timeouts, starvation, or load shedding.
 
-* **System Metrics**
+- **System Metrics**
   Continuous measurement of pressure, queue length, failures, throughput, and stability.
 
 ---
@@ -42,27 +43,27 @@ The simulator provides a controlled environment to experiment with real-world sy
 1. **Initialization**
    The system is initialized with:
 
-   * total CPU and RAM
-   * a set of workers
-   * a scheduling policy
+   - total CPU and RAM
+   - a set of workers
+   - a scheduling policy
 
 2. **Task Admission**
    Tasks enter the system with:
 
-   * resource usage profiles
-   * deadlines
-   * failure probabilities
+   - resource usage profiles
+   - deadlines
+   - failure probabilities
 
 3. **Tick Loop**
    The simulation advances in discrete time steps (“ticks”).
 
    Each tick performs:
 
-   * Metrics computation
-   * Scheduling decisions
-   * Task execution progress
-   * Failure evaluation
-   * Metrics update
+   - Metrics computation
+   - Scheduling decisions
+   - Task execution progress
+   - Failure evaluation
+   - Metrics update
 
 4. **Visualization (Demo)**
    A browser-based demo renders pressure, task states, and metrics in real time.
@@ -71,16 +72,16 @@ The simulator provides a controlled environment to experiment with real-world sy
 
 ## Why Use synai-simulator?
 
-* **Research**
+- **Research**
   Explore the behavior of scheduling strategies under stress.
 
-* **System Design**
+- **System Design**
   Prototype and validate new schedulers or resource models.
 
-* **Education**
+- **Education**
   Demonstrate distributed system concepts and failure cascades.
 
-* **Analysis**
+- **Analysis**
   Quantify stability, fairness, and throughput trade-offs.
 
 ---
@@ -89,64 +90,64 @@ The simulator provides a controlled environment to experiment with real-world sy
 
 ### Core Concepts
 
-* **SystemState**
+- **SystemState**
   Full snapshot of the system:
 
-  * time
-  * resources
-  * workers
-  * tasks
-  * metrics
-  * active policy
+  - time
+  - resources
+  - workers
+  - tasks
+  - metrics
+  - active policy
 
-* **Task**
+- **Task**
   A unit of work with:
 
-  * resource usage curves
-  * deadline
-  * progress
-  * failure risk
+  - resource usage curves
+  - deadline
+  - progress
+  - failure risk
 
-* **Worker**
+- **Worker**
   A resource-constrained execution unit.
 
-* **Policy**
+- **Policy**
   A set of weights guiding scheduling decisions.
 
 ---
 
 ### Scheduling Policies
 
-* **FAIRNESS**
+- **FAIRNESS**
 
-  * Prioritizes older tasks
-  * Penalizes starvation
+  - Prioritizes older tasks
+  - Penalizes starvation
 
-* **BALANCED**
+- **BALANCED**
 
-  * Mixes task age and execution cost
+  - Mixes task age and execution cost
 
-* **THROUGHPUT**
+- **THROUGHPUT**
 
-  * Favors cheaper tasks to maximize completions
+  - Favors cheaper tasks to maximize completions
 
 ---
 
 ### Failure Modes
 
-* **Starvation**
+- **Starvation**
   A queued task fails if it waits too long under high pressure.
 
-* **Timeout**
+- **Timeout**
   A task fails if it exceeds its deadline while the system is under pressure.
 
-* **Load Shedding**
+- **Load Shedding**
   When pressure exceeds a threshold, the most expensive queued task is dropped.
 
-* **Pressure-Induced Failure**
+- **Pressure-Induced Failure**
   Running tasks may fail probabilistically based on pressure and task risk.
 
-* **Random Failure**
+- **Random Failure**
   Simulates unpredictable external failures.
 
 ---
@@ -310,9 +311,9 @@ A browser-based demo is included.
 
 You can:
 
-* add tasks
-* change policies
-* observe pressure, failures, and stability in real time
+- add tasks
+- change policies
+- observe pressure, failures, and stability in real time
 
 ---
 
@@ -337,4 +338,4 @@ Please open an issue or submit a pull request.
 
 ## License
 
-MIT License
+Apache License Version 2.0, January 2004
